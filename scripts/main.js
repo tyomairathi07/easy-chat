@@ -32,94 +32,94 @@ function EasyChat() {
 
   // TODO : 08. firestoreから読み込み
   // TODO : 10. リアルタイムアップデートを拾うようにしたら不要
-  // this.loadMessages();
+//   this.loadMessages();
 }
 
 // Sets up Firebase features.
 EasyChat.prototype.initFirebase = function() {
   // TODO : 08. firestoreから読み込み
-  // this.firestore = firebase.firestore();
+  this.firestore = firebase.firestore();
 
   // TODO : 10. Add realtime update listener
-  // var that = this;
-  // this.firestore.collection('messages')
-  //   .orderBy('timestamp')
-  //   .onSnapshot(function(querySnapshot) {
-  //     querySnapshot.docChanges().forEach(function(change) {
-  //       if (change.type === "added") {
-  //         that.displayMessage(change.doc.id, change.doc.data().name, change.doc.data().message, change.doc.data().photoURL)
-  //       }
-  //     });
-  //   });
+  var that = this;
+  this.firestore.collection('messages')
+    .orderBy('timestamp')
+    .onSnapshot(function(querySnapshot) {
+      querySnapshot.docChanges().forEach(function(change) {
+        if (change.type === "added") {
+          that.displayMessage(change.doc.id, change.doc.data().name, change.doc.data().message, change.doc.data().photoURL)
+        }
+      });
+    });
 
   // TODO : 12. 認証を追加
-  // this.auth = firebase.auth();
-  // this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
+  this.auth = firebase.auth();
+  this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
 };
 
 // Loads chat messages history and listens for upcoming ones.
 EasyChat.prototype.loadMessages = function() {
   // TODO : 08. firestoreから読み込み
-  // this.firestore.collection('messages')
-  //   .orderBy('timestamp')
-  //   .get()
-  //   .then((querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //       this.displayMessage(doc.id, doc.data().name, doc.data().message, 'images/profile_placeholder.png')
-  //   });
-  // })
+//   this.firestore.collection('messages')
+//     .orderBy('timestamp')
+//     .get()
+//     .then((querySnapshot) => {
+//       querySnapshot.forEach((doc) => {
+//         this.displayMessage(doc.id, doc.data().name, doc.data().message, 'images/profile_placeholder.png')
+//     });
+//   })
 
   // TODO : 12. 認証後のユーザー画像追加
-  // this.firestore.collection('messages')
-  //   .orderBy('timestamp')
-  //   .get()
-  //   .then((querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //       this.displayMessage(doc.id, doc.data().name, doc.data().message, doc.data().photoURL)
-  //     });
-  //   })
+  this.firestore.collection('messages')
+    .orderBy('timestamp')
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.displayMessage(doc.id, doc.data().name, doc.data().message, doc.data().photoURL)
+      });
+    })
 };
 
 // Saves a new message on the Firestore.
 EasyChat.prototype.saveMessage = function(e) {
   e.preventDefault();
   // TODO : 06. 送信時処理を追加
-  // if (this.messageInput.value) {
-  //   var date = new Date();
-  //   this.displayMessage(date.getTime(), 'User Name', this.messageInput.value, 'images/profile_placeholder.png');
-  // }
+//   if (this.messageInput.value) {
+//     var date = new Date();
+//     this.displayMessage(date.getTime(), 'User Name', this.messageInput.value, 'images/profile_placeholder.png');
+//   }
 
   // TODO : 09. 送信時のFirestore保存処理を追加
-  // if (this.messageInput.value) {
-  //   this.firestore.collection('messages').add({
-  //     name: "User Name",
-  //     message: this.messageInput.value,
-  //     photoURL: '/images/profile_placeholder.png',
-  //     timestamp: new Date()
-  //   })
-  //   .catch(function(error) {
-  //     console.error("Error adding document: ", error);
-  //   });
+//   if (this.messageInput.value) {
+//     this.firestore.collection('messages').add({
+//       name: "User Name",
+//       message: this.messageInput.value,
+//       photoURL: '/images/profile_placeholder.png',
+//       timestamp: new Date()
+//     })
+//     .catch(function(error) {
+//       console.error("Error adding document: ", error);
+//     });
 
-  //   EasyChat.resetMaterialTextfield(this.messageInput);
-  //   this.toggleButton();
-  // }
+//     EasyChat.resetMaterialTextfield(this.messageInput);
+//     this.toggleButton();
+//   }
 
   // TODO : 12. 認証チェックを追加
-  // if (this.messageInput.value && this.checkSignedInWithMessage()) {
-  //   this.firestore.collection('messages').add({
-  //     name: this.auth.currentUser.displayName,
-  //     message: this.messageInput.value,
-  //     photoURL: this.auth.currentUser.photoURL || '/images/profile_placeholder.png',
-  //     timestamp: new Date()
-  //   })
-  //   .catch(function(error) {
-  //     console.error("Error adding document: ", error);
-  //   });
+  if (this.messageInput.value && this.checkSignedInWithMessage()) {
+    this.firestore.collection('messages').add({
+      name: this.auth.currentUser.displayName,
+      message: this.messageInput.value,
+      photoURL: this.auth.currentUser.photoURL || '/images/profile_placeholder.png',
+      timestamp: new Date()
+    })
+    .catch(function(error) {
+      console.error("Error adding document: ", error);
+    });
 
-  //   EasyChat.resetMaterialTextfield(this.messageInput);
-  //   this.toggleButton();
-  // }
+    EasyChat.resetMaterialTextfield(this.messageInput);
+    this.toggleButton();
+  }
 };
 
 // Signs-in Easy Chat.
