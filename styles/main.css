@@ -6,6 +6,11 @@ main, #messages-card {
   height: 100%;
   padding-bottom: 0;
 }
+#ind {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #messages-card-container {
   height: 95%;
   padding-bottom: 0;

@@ -1,0 +1,40 @@
+<!--
+    以下のサイトから引っ張ってきた、上下左右キー入力で画像を移動させるhtml
+    https://original-game.com/introduction-to-javascript-move-a-character-by-input/
+    getElementByIdにおいてjquery形式の参照ができなかった
+-->
+
+<html>
+<head>
+
+    <title>キー入力</title>
+    <style>
+        #person {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <img id="person" src="/images/profile_placeholder.png">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <script>
+        var y = 0;
+        var x = 0;
+        addEventListener("keydown", keydownfunc, false);
+ 
+        function keydownfunc( event ) {
+            var key_code = event.keyCode;
+            if( key_code === 37 ) x -= 32;
+            if( key_code === 38 ) y -= 32;
+            if( key_code === 39 ) x += 32;
+            if( key_code === 40 ) y += 32;
+            document.getElementById('person' ).style.top = y + "px";
+            //$('#person' ).style.top = y + "px";
+            document.getElementById('person' ).style.left = x + "px";
+        }
+    </script>
+</body>
+</html>

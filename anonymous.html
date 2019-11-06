@@ -1,0 +1,37 @@
+<!-- 
+    以下のサイトから引っ張ってきた。匿名ログインuseridを表示するhtml
+    https://blog.katsubemakito.net/firebase/firebase-authentication-anonymously-web1 
+    なお19行目は記事よりも新しいバージョ更新してある
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AnonyMously Login</title>
+</head>
+<body>
+
+<h1>AnonyMously Login</h1>
+<div id="canvas">.....</div>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-auth.js"></script>
+<script src="/__/firebase/init.js"></script>
+<script>
+// 匿名ログイン
+// ここでFirebaseと非同期で通信しユーザーIDを発行している
+firebase.auth().signInAnonymously().catch( (error) => {
+  console.log(`[error] Can not signin anonymouse (${error.code}:${error.message})`);
+});
+
+// 認証状態が変化すると呼び出される
+firebase.auth().onAuthStateChanged( (user) => {
+  if ( user ) {
+    let uid = user.uid;
+    document.getElementById("canvas").innerHTML = `あたなのIDは「<strong>${uid}</strong>」です`
+  }
+});
+</script>
+</body>
+</html>
