@@ -7,7 +7,9 @@ https://cloud.google.com/shell/docs/open-in-cloud-shell
 ## LICENSE
 The MIT License (MIT)
 
-##2019/11/06
-test.html: 画像をキー入力で移動させるhtml
-anonymous.html: 匿名ログイン後、useridを表示するhtml
+## commit詳細
+
+- 2019/11/06
+    - test.html: 画像をキー入力で移動させるhtml
+    - anonymous.html: 匿名ログイン後、useridを表示するhtml
 
