@@ -12,4 +12,7 @@ The MIT License (MIT)
 - 2019/11/06
     - test.html: 画像をキー入力で移動させるhtml
     - anonymous.html: 匿名ログイン後、useridを表示するhtml
+- 2019/11/07
+    - anonymous.htmlからボタンを介してchat.htm遷移できるように
+    - index.htmlからlogin.htmlにログイン機能を移行。また、認証ログインができるように
 
