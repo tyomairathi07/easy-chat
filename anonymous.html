@@ -29,9 +29,11 @@ firebase.auth().signInAnonymously().catch( (error) => {
 firebase.auth().onAuthStateChanged( (user) => {
   if ( user ) {
     let uid = user.uid;
-    document.getElementById("canvas").innerHTML = `あたなのIDは「<strong>${uid}</strong>」です`
+    document.getElementById("canvas").innerHTML = `あなたのusesrIDは「<strong>${uid}</strong>」です`
   }
 });
 </script>
+<br>
+<a href="chat.html"><button type="button" >チャットへ移動</button></a>
 </body>
 </html>
