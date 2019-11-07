@@ -1,52 +1,60 @@
-// login.js
-'use strict';
+<!doctype html>
+<html lang="ja">
 
-// Initializes EasyChat.
-function EasyChat() {
-  this.checkSetup();
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Learn how to use the Firebase platform on the Web">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easy Chat</title>
 
-  // Shortcuts to DOM Elements.
-  this.signInButton = document.getElementById('sign-in');
-  this.signInSnackbar = document.getElementById('must-signin-snackbar');
+  <!-- Material Design Lite -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.orange-indigo.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
-  // Saves message on form submit.
-  this.signInButton.addEventListener('click', this.signIn.bind(this));
+  <!-- App Styling -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
 
-  this.initFirebase();
-}
+<body>
+  <div class="mdl-layout mdl-js-layout">
+    <main class="mdl-layout__content mdl-color--grey-100">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-desktop"></div>
 
-// Sets up Firebase features.
-EasyChat.prototype.initFirebase = function() {
-  // TODO : 11. 認証を追加
-  this.auth = firebase.auth();
-  this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
-};
+        <div class="mdl-card mdl-shadow--6dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+          <div class="mdl-card__title mdl-color--primary mdl-color-text--white relative">
+            <h2 class="mdl-card__title-text">Easy Chat</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            チャットへようこそ</br></br>
+            Googleアカウントでログインください</br></br>
+            ログイン後, chat.htmlに遷移
+          </div>
+          <div class="mdl-card__actions">
+            <div class="mdl-grid">
+              <button id="sign-in"
+                class="mdl-cell mdl-cell--12-col mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--white">Googleアカウントでログイン</button>
+              <button id="sign-in2"
+                class="mdl-cell mdl-cell--12-col mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--white" onclick="golink()" >匿名アカウントでログイン</button>    
+            </div>
+          </div>
+        </div>
 
-// Signs-in Easy Chat.
-EasyChat.prototype.signIn = function() {
-  // TODO : 11. サインインボタン
-  var provider = new firebase.auth.GoogleAuthProvider();
-  this.auth.signInWithPopup(provider);
-};
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-desktop"></div>
+      </div>
+    </main>
+  </div>
 
-// Triggers when the auth state change for instance when the user signs-in or signs-out.
-EasyChat.prototype.onAuthStateChanged = function(user) {
-  if (user) {
-    // ログイン成功時にチャット画面（chat.html）に遷移
-    window.location.href = './chat.html';
-  }
-};
+  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+  <!-- TODO : 04. Firebase configを追加 -->
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
 
-// Checks that the Firebase SDK has been correctly setup and configured.
-EasyChat.prototype.checkSetup = function() {
-  if (!window.firebase || !(firebase.app instanceof Function) || !firebase.app().options) {
-    window.alert('You have not configured and imported the Firebase SDK. ' +
-      'Make sure you go through the codelab setup instructions and make ' +
-      'sure you are running the codelab using `firebase serve`');
-  }
-};
-
-window.onload = function() {
-  // Initializes EasyChat.
-  window.easyChat = new EasyChat();
-};
+  <script src="scripts/login.js"></script>
+</body>
