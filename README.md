@@ -1,3 +1,5 @@
+##ローカルからpush
+
 # easy-chat
 [![Open in Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fkappa0923%2Feasy-chat.git)
 
@@ -15,4 +17,3 @@ The MIT License (MIT)
 - 2019/11/07
     - anonymous.htmlからボタンを介してchat.htm遷移できるように
     - index.htmlからlogin.htmlにログイン機能を移行。また、認証ログインができるように
-
