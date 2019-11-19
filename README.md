@@ -1,4 +1,4 @@
-## ローカルからpush
+## cloud shellからpush
 test中
 
 # easy-chat
